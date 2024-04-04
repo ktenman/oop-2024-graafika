@@ -19,6 +19,13 @@ public class Kalkulaator extends Application {
 		display.setMaxWidth(Double.MAX_VALUE);
 		GridPane.setConstraints(display, 0, 0, 4, 1);
 		
+		String[] buttonLabels = {
+			"7", "8", "9", "/",
+			"4", "5", "6", "*",
+			"1", "2", "3", "-",
+			"0", ".", "=", "+"
+		};
+		
 		peaLava.setTitle("Kalkulaator");
 		peaLava.show();
 	}
