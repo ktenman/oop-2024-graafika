@@ -19,7 +19,6 @@ public interface KalkulaatoriKonstandid {
 	
 	double SCENE_WIDTH = 320;
 	double SCENE_HEIGHT = 480;
-	double PADDING = 10;
 	double VAHE = 10;
 	double VÄIKSE_NUPU_LAIUS = 50;
 	

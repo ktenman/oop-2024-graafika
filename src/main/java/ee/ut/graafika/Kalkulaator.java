@@ -2,30 +2,43 @@ package ee.ut.graafika;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class Kalkulaator extends Application {
+public class Kalkulaator extends Application implements KalkulaatoriKonstandid, Operatsioonid {
+	
+	private TextField kuvamine = new TextField();
+	
 	@Override
 	public void start(Stage peaLava) {
-		GridPane gridPane = new GridPane();
-		gridPane.setHgap(10);
-		gridPane.setVgap(10);
-		gridPane.setPadding(new Insets(10, 10, 10, 10));
+		VBox põhjaPaigutus = new VBox();
+		põhjaPaigutus.setPadding(new Insets(VAHE, VAHE, VAHE, VAHE));
+		põhjaPaigutus.setSpacing(VAHE);
 		
-		TextField display = new TextField();
-		display.setEditable(false);
-		display.setMaxWidth(Double.MAX_VALUE);
-		GridPane.setConstraints(display, 0, 0, 4, 1);
+		kuvamine = new TextField();
+		kuvamine.setEditable(false);
+		kuvamine.setStyle(TEXTFIELD_STYLE);
+		kuvamine.setMaxWidth(Double.MAX_VALUE);
+		kuvamine.setAlignment(Pos.TOP_RIGHT);
+		
+		GridPane.setConstraints(kuvamine, 0, 0, 4, 1);
+		
+		GridPane gridPane = new GridPane();
+		gridPane.setHgap(VAHE);
+		gridPane.setVgap(VAHE);
+		gridPane.setPadding(new Insets(VAHE, VAHE, VAHE, VAHE));
+		
 		
 		String[] buttonLabels = {
-			"7", "8", "9", "/",
-			"4", "5", "6", "*",
-			"1", "2", "3", "-",
-			"0", ".", "=", "+"
+				"7", "8", "9", "/",
+				"4", "5", "6", "*",
+				"1", "2", "3", "-",
+				"0", ".", "=", "+"
 		};
 		
 		for (int i = 0; i < buttonLabels.length; i++) {
@@ -39,19 +52,19 @@ public class Kalkulaator extends Application {
 				if (buttonText.equals("=")) {
 					// arvutamine
 				} else {
-					display.setText(buttonText);
+					kuvamine.setText(buttonText);
 				}
 			});
 			
 			gridPane.getChildren().add(button);
 		}
 		
-		gridPane.getChildren().add(display);
+		põhjaPaigutus.getChildren().addAll(kuvamine, gridPane);
 		
-		Scene scene = new Scene(gridPane, 300, 300);
+		Scene scene = new Scene(põhjaPaigutus, 300, 300);
 		
 		peaLava.setScene(scene);
-		peaLava.setTitle("Kalkulaator");
+		peaLava.setTitle(PEALKIRI);
 		peaLava.show();
 	}
 	
