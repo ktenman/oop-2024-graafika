@@ -8,31 +8,39 @@ import javafx.stage.Stage;
 
 public class HiireVajutus extends Application {
 
-    private Label koordinaadid;
+    Label koordinaadid;
 
     @Override
     public void start(Stage peaLava) {
+
         Pane juur = new Pane();
-        Scene scene = new Scene(juur, 400, 300);
+        Scene scene = new Scene(juur, 800, 600);
 
-        scene.setOnMousePressed(event -> {
-            if (koordinaadid != null) {
-                juur.getChildren().remove(koordinaadid);
-            }
+        scene.setOnMousePressed(sündmus -> {
+//1.
+            juur.getChildren().clear();
+//2.
+         //   if (koordinaadid != null) {
+            //    koordinaadid.setVisible(false);
+         //   }
 
-            double x = event.getX();
-            double y = event.getY();
+            double x = sündmus.getX();
+            double y = sündmus.getY();
 
-            koordinaadid = new Label(String.format("(%.1f, %.1f)", x, y));
+            System.out.println(x + " " + y);
+
+            koordinaadid = new Label(x + " " + y);
 
             koordinaadid.setLayoutX(x);
             koordinaadid.setLayoutY(y);
 
+        //    koordinaadid.setVisible(true);
+
             juur.getChildren().add(koordinaadid);
         });
 
-        peaLava.setTitle("Hiire asukoht hetkel, kui vajutatakse hiire nupule");
         peaLava.setScene(scene);
+        peaLava.setTitle("Hiire Vajutus");
         peaLava.show();
     }
 
